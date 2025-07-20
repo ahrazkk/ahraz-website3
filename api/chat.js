@@ -1,4 +1,4 @@
-// api/chat.js
+// api/chat.js - CORRECTED VERSION
 export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
@@ -31,19 +31,19 @@ export default async function handler(req, res) {
   const blocked = ['hack', 'attack', 'spam'];
   if (blocked.some(word => prompt.toLowerCase().includes(word))) {
     return res.status(400).json({ 
-      error: 'AhrazOmatic9000 detected inappropriate content! 🚫' 
+      error: '🤖 AhrazOmatic9000: Detected inappropriate content! 🚫' 
     });
   }
 
   try {
-    ('https://api.groq.com/openai/v1/chat/completions', {
+    const apiResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'meta-llama/llama-4-scout-17b-16e-instruct', // ← UPDATED MODEL
+        model: 'meta-llama/llama-4-scout-17b-16e-instruct',
         messages: [
           {
             role: 'system',
@@ -81,9 +81,9 @@ Be helpful, informative, and showcase Ahraz's skills and projects!`
       }),
     });
 
-    const data = await response.json();
+    const data = await apiResponse.json();
     
-    if (!response.ok) {
+    if (!apiResponse.ok) {
       throw new Error(data.error?.message || 'AI service error');
     }
 
@@ -105,7 +105,7 @@ Be helpful, informative, and showcase Ahraz's skills and projects!`
       });
     } else {
       res.status(500).json({ 
-        error: '☕ AhrazOmatic9000 is taking a coffee break! Try again in a moment...' 
+        error: '☕ AhrazOmatic9000: is taking a coffee break! Try again in a moment...' 
       });
     }
   }
