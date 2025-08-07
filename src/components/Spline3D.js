@@ -112,7 +112,7 @@ const renderOutput = (item, index) => {
 ├─────────────────────────────────────────┤
 │ AI ASSISTANT                            │
 ├─────────────────────────────────────────┤
-│ ai       - Ask AhrazOmatic9000 (ai - question) │
+│ ai       - Ask Ahrazbot (ai - question) │
 │ ask      - Alias for ai command         │
 ├─────────────────────────────────────────┤
 │ FUN STUFF                               │
@@ -855,7 +855,10 @@ Invalid expression: ${args.join(' ')}
 💻 This terminal is rendered on a virtual computer screen using Spline.
 
 Type 'help' to see all available commands.
+
 🤖 NEW: Ask AhrazOmatic9000 anything with 'ai - your question'
+(HEAVLY UNDER CONSTRUCTION, WEIRD PERSONALITY, AND NOT GREAT!)
+(PLEASE DON'T ASK ANYTHING WIERD, IT JUST LIES ABOUT SOME DETAILS)
 
 Ready for some 3D computing magic? Let's go! 🚀
 ════════════════════════════════════════════════════════════════`
