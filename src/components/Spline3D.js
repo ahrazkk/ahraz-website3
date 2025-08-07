@@ -857,8 +857,8 @@ Invalid expression: ${args.join(' ')}
 Type 'help' to see all available commands.
 
 🤖 NEW: Ask AhrazOmatic9000 anything with 'ai - your question'
-(HEAVLY UNDER CONSTRUCTION, WEIRD PERSONALITY, AND NOT GREAT!)
-(PLEASE DON'T ASK ANYTHING WIERD, IT JUST LIES ABOUT SOME DETAILS)
+(HEAVLY UNDER CONSTRUCTION, PLEASE DON'T ASK ANYTHING WEIRD)
+(IT LIES ABOUT DETAILS, & IF YOU BREAK IT PLEASE LET ME KNOW)
 
 Ready for some 3D computing magic? Let's go! 🚀
 ════════════════════════════════════════════════════════════════`
