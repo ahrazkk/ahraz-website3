@@ -792,11 +792,20 @@ const Portfolio = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [splineLoaded, setSplineLoaded] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   
   const { currentSection } = useSectionTransition();
   
   // Quantum easter eggs
   const isQuantumMode = useQuantumKonami();
+
+  // Show scroll indicator after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowScrollIndicator(true);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Theme management
   useEffect(() => {
@@ -904,12 +913,14 @@ const Portfolio = () => {
           {/* Hero Section */}
           <section id="home" className="hero-section">
             <SplineHero onSplineLoad={handleSplineLoad} />
-            <div className="scroll-indicator">
-              <span className="scroll-text">Scroll Down</span>
-              <div className="scroll-arrow">
-                <div className="arrow-down"></div>
+            {showScrollIndicator && (
+              <div className="scroll-indicator fade-in">
+                <span className="scroll-text">Scroll Down</span>
+                <div className="scroll-arrow">
+                  <div className="arrow-down"></div>
+                </div>
               </div>
-            </div>
+            )}
             <ParallaxElement speed={0.3} className="bg-element bg-element-1" />
             <ParallaxElement speed={0.2} className="bg-element bg-element-2" />
           </section>

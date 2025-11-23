@@ -248,6 +248,19 @@ body {
   animation: scrollFloat 3s ease-in-out infinite;
 }
 
+.scroll-indicator.fade-in {
+  animation: scrollFloat 3s ease-in-out infinite, fadeIn 1s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .scroll-text {
   color: var(--text-secondary);
   font-size: 0.9rem;
