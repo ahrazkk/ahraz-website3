@@ -76,7 +76,11 @@ const ParticleSystem = () => {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      particles.current.forEach((particle, index) => {
+      const particleCount = particles.current.length;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = particles.current[i];
+        
         particle.x += particle.vx;
         particle.y += particle.vy;
         
@@ -88,8 +92,9 @@ const ParticleSystem = () => {
         ctx.fillStyle = `rgba(${particle.color}, ${particle.opacity})`;
         ctx.fill();
         
-        // Connect nearby particles
-        particles.current.slice(index + 1).forEach(otherParticle => {
+        // Connect nearby particles - Optimized loop to avoid array allocation
+        for (let j = i + 1; j < particleCount; j++) {
+          const otherParticle = particles.current[j];
           const dx = particle.x - otherParticle.x;
           const dy = particle.y - otherParticle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
@@ -101,8 +106,8 @@ const ParticleSystem = () => {
             ctx.strokeStyle = `rgba(${particle.color}, ${0.1 * (1 - distance / 100)})`;
             ctx.stroke();
           }
-        });
-      });
+        }
+      }
       
       animationRef.current = requestAnimationFrame(animate);
     };
@@ -662,10 +667,39 @@ const TypingText = ({ text, speed = 100, delay = 0 }) => {
   );
 };
 
-// Enhanced Spline Hero with fallback handling
+// Enhanced Spline Hero with fallback handling and visibility optimization
 const SplineHero = ({ onSplineLoad }) => {
   const [splineLoaded, setSplineLoaded] = useState(false);
   const [splineError, setSplineError] = useState(false);
+  const [isInView, setIsInView] = useState(true);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+        // Reset loaded state when out of view to ensure smooth fade-in on return
+        if (!entry.isIntersecting) {
+          setSplineLoaded(false);
+        }
+      },
+      {
+        root: null,
+        rootMargin: '200px', // Keep loaded when close to viewport
+        threshold: 0
+      }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current);
+      }
+    };
+  }, []);
 
   const handleSplineLoad = () => {
     setSplineLoaded(true);
@@ -679,8 +713,8 @@ const SplineHero = ({ onSplineLoad }) => {
   };
 
   return (
-    <div className={`spline-container ${splineLoaded ? 'spline-loaded' : ''} ${splineError ? 'spline-fallback' : ''}`}>
-      {!splineError && (
+    <div ref={containerRef} className={`spline-container ${splineLoaded ? 'spline-loaded' : ''} ${splineError ? 'spline-fallback' : ''}`}>
+      {!splineError && isInView && (
         <Spline 
           scene="https://prod.spline.design/X-xfeLCBB2Ae2FrZ/scene.splinecode"
           onLoad={handleSplineLoad}

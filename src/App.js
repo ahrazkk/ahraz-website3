@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Portfolio from './components/Portfolio';
-import Spline3D from './components/Spline3D';
+import { Analytics } from '@vercel/analytics/react';
 import './App.css';
+
+// Lazy load the 3D Terminal component
+const Spline3D = React.lazy(() => import('./components/Spline3D'));
 
 function App() {
   const [currentView, setCurrentView] = useState('portfolio');
@@ -48,7 +51,14 @@ function App() {
 
       {/* Render Current View */}
       {currentView === 'portfolio' && <Portfolio />}
-      {currentView === 'spline3d' && <Spline3D />}
+      {currentView === 'spline3d' && (
+        <Suspense fallback={<div className="terminal-loading">Initializing Quantum Terminal</div>}>
+          <Spline3D />
+        </Suspense>
+      )}
+      
+      {/* Vercel Analytics */}
+      <Analytics />
     </div>
   );
 }
