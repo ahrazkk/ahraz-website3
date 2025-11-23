@@ -633,10 +633,11 @@ const TypingText = ({ text, speed = 100, delay = 0 }) => {
   const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
+    let interval;
     const timer = setTimeout(() => {
       setIsTyping(true);
       let index = 0;
-      const interval = setInterval(() => {
+      interval = setInterval(() => {
         if (index < text.length) {
           setDisplayText(text.slice(0, index + 1));
           index++;
@@ -645,10 +646,12 @@ const TypingText = ({ text, speed = 100, delay = 0 }) => {
           setIsTyping(false);
         }
       }, speed);
-      return () => clearInterval(interval);
     }, delay);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      if (interval) clearInterval(interval);
+    };
   }, [text, speed, delay]);
 
   return (

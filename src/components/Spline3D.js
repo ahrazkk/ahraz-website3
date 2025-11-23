@@ -14,6 +14,7 @@ const QuantumTerminal3D = ({ onExit }) => {
   const [aiLoading, setAiLoading] = useState(false); // NEW: AI loading state
   const inputRef = useRef(null);
   const outputRef = useRef(null);
+  const typewriterTimers = useRef([]); // Track all typewriter timers for cleanup
 
   const fileSystem = {
     '/home/ahraz': {
@@ -38,22 +39,34 @@ const QuantumTerminal3D = ({ onExit }) => {
 const addTypewriterEffect = (outputIndex, text) => {
   const lines = text.split('\n');
   lines.forEach((line, lineIndex) => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setVisibleLines(prev => ({
         ...prev,
         [`${outputIndex}-${lineIndex}`]: line
       }));
       
       // Auto-scroll to bottom during typewriter effect
-      setTimeout(() => {
+      const scrollTimer = setTimeout(() => {
         if (outputRef.current) {
           outputRef.current.scrollTop = outputRef.current.scrollHeight;
         }
       }, 10); // Small delay to ensure DOM is updated
       
+      typewriterTimers.current.push(scrollTimer);
     }, lineIndex * 80); // 80ms delay between lines (really fast)
+    
+    typewriterTimers.current.push(timer);
   });
 };
+
+  // Cleanup function for typewriter timers
+  useEffect(() => {
+    return () => {
+      // Clear all typewriter timers on unmount
+      typewriterTimers.current.forEach(timer => clearTimeout(timer));
+      typewriterTimers.current = [];
+    };
+  }, []);
 
   // Enhanced output rendering with typewriter effect
  // Updated renderOutput function that handles HTML spans
