@@ -118,62 +118,7 @@ const ParticleSystem = () => {
   return <canvas ref={canvasRef} className="particle-canvas" />;
 };
 
-// Loading Animation Component
-const LoadingAnimation = ({ onComplete }) => {
-  const [progress, setProgress] = useState(0);
-  const [stage, setStage] = useState('loading'); // loading, complete, hidden
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setStage('complete');
-          setTimeout(() => {
-            setStage('hidden');
-            onComplete();
-          }, 500);
-          return 100;
-        }
-        return prev + Math.random() * 10 + 5;
-      });
-    }, 150);
-
-    return () => clearInterval(interval);
-  }, [onComplete]);
-
-  if (stage === 'hidden') return null;
-
-  return (
-    <div className={`loading-screen ${stage}`}>
-      <div className="loading-content">
-        <div className="loading-logo">
-          <div className="logo-text">AK</div>
-          <div className="logo-rings">
-            <div className="ring ring-1"></div>
-            <div className="ring ring-2"></div>
-            <div className="ring ring-3"></div>
-          </div>
-        </div>
-        <div className="loading-text">
-          <span className="loading-label">Loading Experience</span>
-          <span className="loading-percentage">{Math.round(progress)}%</span>
-        </div>
-        <div className="loading-bar">
-          <div 
-            className="loading-progress" 
-            style={{ width: `${progress}%` }}
-          ></div>
-        </div>
-      </div>
-      <div className="loading-particles">
-        {[...Array(20)].map((_, i) => (
-          <div key={i} className={`loading-particle particle-${i}`}></div>
-        ))}
-      </div>
-    </div>
-  );
-};
 
 // Interactive Background Component
 const InteractiveBackground = () => {
@@ -845,7 +790,6 @@ const ThemeToggle = ({ isDark, setIsDark }) => {
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
   const [splineLoaded, setSplineLoaded] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(true);
   
@@ -890,13 +834,6 @@ const Portfolio = () => {
     setSplineLoaded(true);
   };
 
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-  };
-
-  // Show content when loading is done
-  const showContent = !isLoading;
-
   const experienceData = [
     {
       title: "Software Integration Engineer - Intern",
@@ -923,17 +860,13 @@ const Portfolio = () => {
 
   return (
     <div className={`portfolio ${isQuantumMode ? 'quantum-active' : ''}`} data-theme={isDarkMode ? 'dark' : 'light'}>
-      {isLoading && (
-        <LoadingAnimation onComplete={handleLoadingComplete} />
-      )}
-      
       {/* Quantum Terminal Mode */}
-      {showContent && isQuantumMode && (
+      {isQuantumMode && (
         <QuantumTerminal />
       )}
       
       {/* Normal Portfolio Mode */}
-      {showContent && !isQuantumMode && (
+      {!isQuantumMode && (
         <>
           {/* Particle System */}
           <ParticleSystem />
