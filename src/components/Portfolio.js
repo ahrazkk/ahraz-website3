@@ -288,6 +288,30 @@ QUANTUM TERMINAL v3.0 - Available Commands:
 FEATURED PROJECTS:
 ══════════════════════════════════════════════════════════════
 
+☁️ GCP-Based MLOps for Clinical NLP
+   • Architected high-availability 3-replica GKE microservice platform
+   • Engineered temperature-scaled PubMedBERT model orchestration
+   • Polyglot persistence: Cloud SQL, Neo4j, Redis integration
+   • Slashed costs from $807/mo to $0 with scale-to-zero GPU nodes
+   • 90% F1-score clinical entity recognition
+   📦 GitHub: ahrazkk/ProjectAegis-Clinical-MLOps-Platform
+
+🔄 TMUSync - Automated University Data Synchronization
+   • Full-stack Next.js dashboard with TypeScript
+   • Playwright headless automation for data scraping
+   • Dual-persistence: iron-session & localStorage strategy
+   • Secure, offline-capable performance architecture
+   🌐 Live: tmusync.vercel.app
+   📦 GitHub: ahrazkk/TMUSync
+
+🤖 Augmented Analyst: Enterprise AI Data Agent
+   • Engineered AI agent for 2,500+ employee data discovery
+   • Scaled across 10TB+ data in 15+ BigQuery projects
+   • Flask REST API with 99.8% uptime resilient GenAI client
+   • Provider-fallback architecture (Vertex AI, Azure OAI)
+   • Gemini-1.5 automated schema summarization
+   🏆 Enterprise Internship Competition Project
+
 👓 4Sight - AI Smart Assistive Glasses
    • YOLOv8 neural network implementation
    • 99% detection accuracy achieved
@@ -307,19 +331,7 @@ FEATURED PROJECTS:
    • Docker & Kubernetes orchestration
    • Google Cloud Platform deployment
    • OAuth2 security implementation
-   📦 GitHub: ahrazkk/StreamFlix--FullStack-Movie-Website
-
-🏥 SQL Patient Database Management System
-   • Oracle APEX & JavaFX integration
-   • BCNF compliance & normalization
-   • Comprehensive patient data management
-   📦 GitHub: ahrazkk/Patient-DBMS-Website
-
-🌐 Quantum Portfolio Website
-   • React with Spline 3D integration
-   • Glassmorphism design system
-   • Interactive terminal easter egg
-   📦 GitHub: ahrazkk/blast-off-portfolio-site`
+   📦 GitHub: ahrazkk/StreamFlix--FullStack-Movie-Website`
     },
 
     matrix: {
@@ -1028,44 +1040,46 @@ const Portfolio = () => {
               <div className="projects-grid">
                 {[
                   {
+                    title: "GCP-Based MLOps for Clinical NLP",
+                    description: "Architected an enterprise-grade, high-availability GKE microservice platform orchestrating a temperature-scaled PubMedBERT model across 7+ backend services. Implemented polyglot persistence strategy integrating Cloud SQL (PostgreSQL), Neo4j graph database, and Redis for optimal data management. Achieved 90% F1-score while engineering cloud cost optimization from $807/mo to $0 through strategic scale-to-zero GPU node pools.",
+                    tech: ["GCP", "Kubernetes (GKE)", "Docker", "Python", "PubMedBERT", "PostgreSQL", "Neo4j", "Redis", "REST/gRPC APIs"],
+                    icon: "☁️",
+                    github: "https://github.com/ahrazkk/ProjectAegis-Clinical-MLOps-Platform"
+                  },
+                  {
+                    title: "TMUSync - Automated University Data Synchronization",
+                    description: "Engineered a sophisticated full-stack Next.js dashboard architecting Playwright-driven headless automation for comprehensive university data acquisition. Implemented dual-persistence architecture leveraging iron-session for secure server-side state management and localStorage for resilient offline-capable performance, ensuring seamless user experience across network conditions.",
+                    tech: ["Next.js", "TypeScript", "Playwright", "iron-session", "React", "API Routes", "Headless Automation"],
+                    icon: "🔄",
+                    github: "https://github.com/ahrazkk/TMUSync",
+                    live: "https://tmusync.vercel.app/"
+                  },
+                  {
+                    title: "Augmented Analyst: Enterprise AI Data Agent",
+                    description: "Architected an enterprise-scale AI-powered data discovery agent serving 2,500+ employees, successfully orchestrating intelligent queries across 10TB+ of distributed data spanning 15+ BigQuery projects. Engineered a resilient Flask REST API with sophisticated provider-fallback architecture (Vertex AI, Azure OpenAI), achieving 99.8% uptime. Leveraged Gemini-1.5 for automated schema summarization and semantic understanding.",
+                    tech: ["Python", "Flask", "GCP (Vertex AI)", "BigQuery", "Gemini-1.5", "Azure OpenAI", "REST API", "GenAI"],
+                    icon: "🤖"
+                  },
+                  {
                     title: "4Sight - AI Smart Assistive Glasses",
                     description: "Neural network-driven wearable device leveraging YOLOv8 and ultrasonic sensors for real-time environmental awareness. Achieved 99% detection accuracy and won 4th place out of 17 teams, promoting social inclusivity for individuals with visual impairments.",
                     tech: ["YOLOv8", "Python", "Arduino", "OpenAI GPT API", "Neural Networks", "3D Audio Processing"],
                     icon: "👓",
-                    github: "https://github.com/ahrazkk/4Sight--AI-Powered-Vision-Assistance",
-                    hasLearnMore: true
+                    github: "https://github.com/ahrazkk/4Sight--AI-Powered-Vision-Assistance"
                   },
                   {
                     title: "BIOsync - Muscle Fatigue Prediction",
                     description: "Advanced AI-driven fitness tracking system using EMG signal processing and MLP neural networks for real-time muscle fatigue prediction. Integrated OpenAI GPT for natural language coaching and personalized training feedback.",
                     tech: ["Python", "MLP Neural Networks", "EMG Processing", "DSP", "OpenAI GPT", "Machine Learning"],
                     icon: "💪",
-                    github: "https://github.com/ahrazkk/BIOsync--Advanced-Fitness-AI",
-                    hasLearnMore: true
+                    github: "https://github.com/ahrazkk/BIOsync--Advanced-Fitness-AI"
                   },
                   {
                     title: "StreamFlix - Full-Stack Streaming Platform",
                     description: "Scalable movie streaming platform using microservices architecture with Spring Boot, Docker, and Kubernetes. Deployed on Google Cloud with CI/CD pipelines, OAuth2 security, and supports user management and subscriptions.",
                     tech: ["Spring Boot", "Docker", "Kubernetes", "Google Cloud", "MySQL", "OAuth2", "CI/CD"],
                     icon: "🎬",
-                    github: "https://github.com/ahrazkk/StreamFlix--FullStack-Movie-Website",
-                    hasLearnMore: true
-                  },
-                  {
-                    title: "SQL Patient Database Management System",
-                    description: "Sophisticated patient database management system leveraging SQL, Oracle, and Oracle APEX technologies. Features a visually engaging website with JavaFX integration, providing users with a user-friendly interface for accessing and managing patient data with BCNF compliance.",
-                    tech: ["SQL", "Oracle", "Oracle APEX", "JavaFX", "Database Design", "BCNF Normalization"],
-                    icon: "🏥",
-                    github: "https://github.com/ahrazkk/Patient-DBMS-Website",
-                    hasLearnMore: true
-                  },
-                  {
-                    title: "Personal Portfolio Website",
-                    description: "Modern, responsive portfolio website built with React and featuring interactive 3D elements using Spline. Implements glassmorphism design, smooth animations, and dynamic navigation with optimized performance.",
-                    tech: ["React", "JavaScript", "CSS3", "Spline", "Responsive Design", "Animation"],
-                    icon: "🌐",
-                    github: "https://github.com/ahrazkk/blast-off-portfolio-site",
-                    hasLearnMore: false
+                    github: "https://github.com/ahrazkk/StreamFlix--FullStack-Movie-Website"
                   }
                 ].map((project, index) => (
                   <ScrollReveal key={index} animation="zoomIn" delay={index * 150}>
@@ -1086,20 +1100,20 @@ const Portfolio = () => {
                           ))}
                         </div>
                         <div className="project-links">
-                          <MagneticButton 
-                            className="glass-button-small"
-                            onClick={() => window.open(project.github, '_blank')}
-                          >
-                            GitHub
-                          </MagneticButton>
-                          {project.hasLearnMore && (
+                          {project.github && (
                             <MagneticButton 
                               className="glass-button-small"
-                              onClick={() => {
-                                console.log(`Learn more about ${project.title}`);
-                              }}
+                              onClick={() => window.open(project.github, '_blank')}
                             >
-                              Learn More
+                              GitHub
+                            </MagneticButton>
+                          )}
+                          {project.live && (
+                            <MagneticButton 
+                              className="glass-button-small"
+                              onClick={() => window.open(project.live, '_blank')}
+                            >
+                              Live Demo
                             </MagneticButton>
                           )}
                         </div>

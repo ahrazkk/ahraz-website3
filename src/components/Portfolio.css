@@ -1416,27 +1416,32 @@ body::before {
 }
 
 .glass-button-small {
-  background: rgba(139, 92, 246, 0.8);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
   padding: 0.7rem 1.4rem;
   color: white;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 0.85rem;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   letter-spacing: -0.01em;
   font-family: 'Inter', sans-serif;
   z-index: 100;
   pointer-events: auto !important;
   position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .glass-button-small:hover {
-  background: var(--primary-purple);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 /* Enhanced Sections */
